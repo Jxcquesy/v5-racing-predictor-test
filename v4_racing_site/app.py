@@ -4,7 +4,7 @@ from datetime import date, timedelta
 from pathlib import Path
 import pandas as pd
 import streamlit as st
-from v5_engine import predict_v5, select_daily
+from v4_racing_site.v5_engine import predict_v5, select_daily
 from pdf_parser import extract
 import bet_tracker
 
