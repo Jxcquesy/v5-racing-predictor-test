@@ -4,6 +4,14 @@ from datetime import date, timedelta
 from pathlib import Path
 import pandas as pd
 import streamlit as st
+import sys
+from pathlib import Path
+
+sys.path.insert(
+    0,
+    str(Path(__file__).resolve().parent / "v4_racing_site")
+)
+
 from v5_engine import predict_v5, select_daily
 from pdf_parser import extract
 import bet_tracker
