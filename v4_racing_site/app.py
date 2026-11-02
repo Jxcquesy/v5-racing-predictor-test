@@ -2,14 +2,21 @@
 import io
 from datetime import date, timedelta
 from pathlib import Path
+import sys
+
+# Engine and PDF parser live in the v4_racing_site directory.
+ROOT = Path(__file__).resolve().parent
+ENGINE_DIR = ROOT / "v4_racing_site"
+if not ENGINE_DIR.is_dir():
+    raise RuntimeError("Missing v4_racing_site folder in GitHub repository")
+sys.path.insert(0, str(ENGINE_DIR))
 import pandas as pd
 import streamlit as st
-from v4_racing_site.v5_engine import predict_v5, select_daily
+from v5_engine import predict_v5, select_daily
 from pdf_parser import extract
 import bet_tracker
 
-ROOT = Path(__file__).resolve().parent
-MODEL = ROOT / 'v5_top3_model.joblib'
+MODEL = ENGINE_DIR / 'v5_top3_model.joblib'
 KEY = ['RaceDate','Course','RaceTime','HorseName']
 st.set_page_config(page_title='V5 Racing Predictor',page_icon='🏇',layout='centered',initial_sidebar_state='collapsed')
 st.markdown('''<style>div.stButton>button{min-height:3.1rem;width:100%;border-radius:13px}div[data-testid="stMetric"]{background:rgba(128,128,128,.08);padding:12px;border-radius:12px}input{font-size:18px!important}</style>''',unsafe_allow_html=True)
