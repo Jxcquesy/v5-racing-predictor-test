@@ -12,7 +12,6 @@ def config():
     try:
         url = str(st.secrets['SUPABASE_URL']).rstrip('/')
         key = str(st.secrets['SUPABASE_SERVICE_ROLE_KEY'])
-        password = str(st.secrets['TRACKER_PASSWORD'])
         if not url.startswith('https://') or not key or not password:
             return None
         return url, key, password
